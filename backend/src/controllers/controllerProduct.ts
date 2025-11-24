@@ -26,7 +26,7 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
       title, image, category, description, price,
     });
     const savedProduct = await newProduct.save();
-    return res.status(200).send(savedProduct);
+    return res.status(201).send(savedProduct);
   } catch (err) {
     if (err instanceof Error && err.message.includes('E11000')) {
       return next(new ConflictError('Продукт с таким названием уже существует'));

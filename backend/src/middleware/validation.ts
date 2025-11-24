@@ -8,7 +8,7 @@ const productSchema = Joi.object({
   }).required(),
   category: Joi.string().required(),
   description: Joi.string().required(),
-  price: Joi.number().required().allow(null),
+  price: Joi.number(),
 });
 
 export const validateNewProduct = celebrate({
