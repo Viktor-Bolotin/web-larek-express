@@ -40,6 +40,8 @@ const ProductSchema = new mongoose.Schema<IProduct>({
     required: false,
     default: null,
   },
+}, {
+  versionKey: false,
 });
 
 export default mongoose.model<IProduct>('product', ProductSchema);

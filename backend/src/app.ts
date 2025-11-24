@@ -1,10 +1,11 @@
-import express from 'express';
+import express, { Response, Request, NextFunction } from 'express';
 import path from 'path';
 import { errors as selebrateErrors } from 'celebrate';
 import productRouter from './routes/product';
 import orderRouter from './routes/order';
 import errorHandler from './middleware/errorHandler';
 import { errorLogger, requestLogger } from './middleware/logger';
+import NotFoundError from './errors/notFoundError';
 
 const mongoose = require('mongoose');
 
@@ -24,6 +25,7 @@ app.use(requestLogger);
 
 app.use('/product', productRouter);
 app.use('/order', orderRouter);
+app.use('*', (_req: Request, _res: Response, next: NextFunction) => next(new NotFoundError()));
 
 app.use(errorLogger);
 
